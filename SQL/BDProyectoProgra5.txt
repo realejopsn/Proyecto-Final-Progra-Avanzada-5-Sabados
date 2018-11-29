@@ -1,0 +1,43 @@
+
+DBLOGIC
+
+Articulos
+-id
+-tipo
+-marca
+-modelo
+-descripcion
+-categoria
+-subcategoria
+-estado
+	-bajo custodia
+	-extraviado
+	-reportado
+	-no Asignado
+	-entregado
+	-desechado
+IDpersonaEntregado
+IDpersonaDevuelto
+IDpersonaReportado
+
+	
+-
+
+
+personas
+id
+-nombre 
+-telefono
+-correo electronico
+-tipointeraccion
+	-devuelver art
+	-retirar art
+	-reporta Art
+-puesto
+	-estudiante
+	-docente
+	-empleado
+	-adminTI
+
+
+
