@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fidelitas.Proyecto.Articulo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fidelitas.Proyecto.ArticulosPerdidos.BL", "Fidelitas.Proyecto.ArticulosPerdidos.BL\Fidelitas.Proyecto.ArticulosPerdidos.BL.csproj", "{3C981FEB-437C-4B75-93C3-3F96D810D248}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fidelitas.Proyecto.ArticulosPerdidos.Model", "Fidelitas.Proyecto.ArticulosPerdidos.Model\Fidelitas.Proyecto.ArticulosPerdidos.Model.csproj", "{7A9EC044-6B78-456F-915F-612923454F40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3C981FEB-437C-4B75-93C3-3F96D810D248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C981FEB-437C-4B75-93C3-3F96D810D248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C981FEB-437C-4B75-93C3-3F96D810D248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A9EC044-6B78-456F-915F-612923454F40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A9EC044-6B78-456F-915F-612923454F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A9EC044-6B78-456F-915F-612923454F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A9EC044-6B78-456F-915F-612923454F40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
