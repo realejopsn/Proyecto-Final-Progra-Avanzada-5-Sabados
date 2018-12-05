@@ -1,0 +1,41 @@
+*articulos
+-Id PK AI 
+-Id_Categoria (FK_Categoria) Int
+-Estado varchar 30 (Desecho, Entregado, En custudia)
+-Marca Varchar 50
+-Modelo Varchar 30
+-Descripcion Varchar 100
+-Fotos Varchar 100 (maes no se como lo hacemos fijo un string que guarda la direccion de la imagen o propongan babys)
+
+*Categoria_Articulo
+-ID PK Int
+-Nombre_Categoria Varchar 30
+-Subcategoria Varchar 30
+
+*Persona_Reportando_Extravio
+-ID PK AI Int
+-ID_Persona (fk_persona) Varchar 10
+-ID_Categoria (fk_articulo) int
+-Fecha_reporte Datetime
+
+*Persona_entregado
+-ID PK AI int
+-ID_Persona (fk_persona) Varchar 10
+-ID_articulo (fk_articulo)
+-Fecha_entrega
+
+*Persona
+-ID PK Varchar 10
+-Nombre_Completo Varchar 50
+-User Varchar 30
+-Contrasenia Varchar 30
+-Email Varchar 30
+-Rol Varchar 30 (Admin, Custudia, Guess) (Para saber que puede hacer)
+  
+
+Glosario
+(*)Tabla
+(-)atributo
+(fk)Foreing key a tal tabla
+(Pk)manda huevo primary key
+(AI)autoincremental.
