@@ -30,8 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,7 +49,70 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ARTICULOS.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CATEGORIA_ARTICULO.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloArticulosPerdidos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloArticulosPerdidos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloArticulosPerdidos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloArticulosPerdidos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloArticulosPerdidos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PERSONA.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PERSONA_ENTREGANDO.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PERSONA_REPORTANDO_EXTRAVIO.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tablas\ARTICULOScs.cs" />
+    <Compile Include="Tablas\CATEGORIA_ARTICULO.cs" />
+    <Compile Include="Tablas\PERSONA.cs" />
+    <Compile Include="Tablas\PERSONA_ENTREGANDO.cs" />
+    <Compile Include="Tablas\PERSONA_REPORTANDO_EXTRAVIO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="ModeloArticulosPerdidos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloArticulosPerdidos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="ModeloArticulosPerdidos.edmx.diagram">
+      <DependentUpon>ModeloArticulosPerdidos.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModeloArticulosPerdidos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModeloArticulosPerdidos.Context.cs</LastGenOutput>
+      <DependentUpon>ModeloArticulosPerdidos.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModeloArticulosPerdidos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloArticulosPerdidos.edmx</DependentUpon>
+      <LastGenOutput>ModeloArticulosPerdidos.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
