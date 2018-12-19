@@ -196,12 +196,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ARTICULOSController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CategoriaArticuloViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,6 +268,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ARTICULOS\Create.cshtml" />
+    <Content Include="Views\ARTICULOS\Delete.cshtml" />
+    <Content Include="Views\ARTICULOS\Details.cshtml" />
+    <Content Include="Views\ARTICULOS\Edit.cshtml" />
+    <Content Include="Views\ARTICULOS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -282,6 +289,19 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fidelitas.Proyecto.ArticulosPerdidos.BL\Fidelitas.Proyecto.ArticulosPerdidos.BL.csproj">
+      <Project>{3c981feb-437c-4b75-93c3-3f96d810d248}</Project>
+      <Name>Fidelitas.Proyecto.ArticulosPerdidos.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fidelitas.Proyecto.ArticulosPerdidos.Model\Fidelitas.Proyecto.ArticulosPerdidos.Model.csproj">
+      <Project>{7a9ec044-6b78-456f-915f-612923454f40}</Project>
+      <Name>Fidelitas.Proyecto.ArticulosPerdidos.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

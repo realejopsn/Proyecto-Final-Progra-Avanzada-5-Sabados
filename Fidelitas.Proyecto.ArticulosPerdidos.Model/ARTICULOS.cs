@@ -9,8 +9,11 @@
 
 namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
 {
-     using System.Runtime.Serialization;using System;
+    using System.Runtime.Serialization;
+    using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     [DataContract] public partial class ARTICULOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,5 +33,7 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
         public virtual CATEGORIA_ARTICULO CATEGORIA_ARTICULO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PERSONA_ENTREGANDO> PERSONA_ENTREGANDO { get; set; }
+
+        
     }
 }

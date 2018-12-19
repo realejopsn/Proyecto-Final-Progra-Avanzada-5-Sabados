@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Fidelitas.Proyecto.ArticulosPerdidos.Model.ARTICULOS>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Artículos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTADO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MARCA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MODELO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FOTOS)
+        </th>
+        <th>
+            @Html.DisplayName("Categoría")
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.ID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ESTADO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MARCA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MODELO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FOTOS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CATEGORIA_ARTICULO.NOMBRE_CATEGORIA)
+            </td>
+
+        </tr>
+    }
+
+</table>
