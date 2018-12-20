@@ -13,10 +13,10 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ProyectoProgra5Entities : DbContext
+    public partial class ProyectoProgra5Entities1 : DbContext
     {
-        public ProyectoProgra5Entities()
-            : base("name=ProyectoProgra5Entities")
+        public ProyectoProgra5Entities1()
+            : base("name=ProyectoProgra5Entities1")
         {
         }
     
@@ -27,6 +27,7 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
     
         public virtual DbSet<ARTICULOS> ARTICULOS { get; set; }
         public virtual DbSet<CATEGORIA_ARTICULO> CATEGORIA_ARTICULO { get; set; }
+        public virtual DbSet<ESTADOS> ESTADOS { get; set; }
         public virtual DbSet<PERSONA> PERSONA { get; set; }
         public virtual DbSet<PERSONA_ENTREGANDO> PERSONA_ENTREGANDO { get; set; }
         public virtual DbSet<PERSONA_REPORTANDO_EXTRAVIO> PERSONA_REPORTANDO_EXTRAVIO { get; set; }

@@ -22,7 +22,6 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
     
         [DataMember] public int ID { get; set; }
         [DataMember] public string NOMBRE_CATEGORIA { get; set; }
-        [DataMember] public string SUBCATEGORIA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ARTICULOS> ARTICULOS { get; set; }

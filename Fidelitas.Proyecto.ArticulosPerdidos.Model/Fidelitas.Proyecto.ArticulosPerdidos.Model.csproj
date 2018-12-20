@@ -55,6 +55,9 @@
     <Compile Include="CATEGORIA_ARTICULO.cs">
       <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
     </Compile>
+    <Compile Include="ESTADOS.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModeloArticulosPerdidos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,37 +85,36 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tablas\ARTICULOScs.cs" />
     <Compile Include="Tablas\CATEGORIA_ARTICULO.cs" />
+    <Compile Include="Tablas\ESTADOS.cs" />
     <Compile Include="Tablas\PERSONA.cs" />
     <Compile Include="Tablas\PERSONA_ENTREGANDO.cs" />
     <Compile Include="Tablas\PERSONA_REPORTANDO_EXTRAVIO.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="ModeloArticulosPerdidos.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloArticulosPerdidos.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="ModeloArticulosPerdidos.edmx.diagram">
       <DependentUpon>ModeloArticulosPerdidos.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ModeloArticulosPerdidos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloArticulosPerdidos.Context.cs</LastGenOutput>
       <DependentUpon>ModeloArticulosPerdidos.edmx</DependentUpon>
+      <LastGenOutput>ModeloArticulosPerdidos.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ModeloArticulosPerdidos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloArticulosPerdidos.edmx</DependentUpon>
       <LastGenOutput>ModeloArticulosPerdidos.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

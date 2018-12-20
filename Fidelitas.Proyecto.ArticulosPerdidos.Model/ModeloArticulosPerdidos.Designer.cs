@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\danie\Source\Repos\Proyecto-Final-Progra-Avanzada-5-Sabados\Fidelitas.Proyecto.ArticulosPerdidos.Model\ModeloArticulosPerdidos.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\danie\Source\Repos\Proyecto-Final-Progra-Avanzada-5-Sabados2\Fidelitas.Proyecto.ArticulosPerdidos.Model\ModeloArticulosPerdidos.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

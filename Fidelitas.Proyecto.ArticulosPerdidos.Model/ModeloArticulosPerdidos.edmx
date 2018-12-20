@@ -11,7 +11,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_CATEGORIA" Type="int" />
-          <Property Name="ESTADO" Type="varchar" MaxLength="30" />
+          <Property Name="ESTADO" Type="int" />
           <Property Name="MARCA" Type="varchar" MaxLength="50" />
           <Property Name="MODELO" Type="varchar" MaxLength="30" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" />
@@ -23,7 +23,13 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE_CATEGORIA" Type="varchar" MaxLength="30" />
-          <Property Name="SUBCATEGORIA" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="ESTADOS">
+          <Key>
+            <PropertyRef Name="Id_Estado" />
+          </Key>
+          <Property Name="Id_Estado" Type="int" Nullable="false" />
+          <Property Name="Nombre_Estado" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -63,6 +69,18 @@
             </Principal>
             <Dependent Role="ARTICULOS">
               <PropertyRef Name="ID_CATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOS_ESTADOS">
+          <End Role="ESTADOS" Type="Self.ESTADOS" Multiplicity="0..1" />
+          <End Role="ARTICULOS" Type="Self.ARTICULOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOS">
+              <PropertyRef Name="Id_Estado" />
+            </Principal>
+            <Dependent Role="ARTICULOS">
+              <PropertyRef Name="ESTADO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -117,11 +135,16 @@
         <EntityContainer Name="ProyectoProgra5ModelStoreContainer">
           <EntitySet Name="ARTICULOS" EntityType="Self.ARTICULOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA_ARTICULO" EntityType="Self.CATEGORIA_ARTICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESTADOS" EntityType="Self.ESTADOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERSONA" EntityType="Self.PERSONA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERSONA_ENTREGANDO" EntityType="Self.PERSONA_ENTREGANDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERSONA_REPORTANDO_EXTRAVIO" EntityType="Self.PERSONA_REPORTANDO_EXTRAVIO" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ARTICULOS_CATEGORIA" Association="Self.FK_ARTICULOS_CATEGORIA">
             <End Role="CATEGORIA_ARTICULO" EntitySet="CATEGORIA_ARTICULO" />
+            <End Role="ARTICULOS" EntitySet="ARTICULOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOS_ESTADOS" Association="Self.FK_ARTICULOS_ESTADOS">
+            <End Role="ESTADOS" EntitySet="ESTADOS" />
             <End Role="ARTICULOS" EntitySet="ARTICULOS" />
           </AssociationSet>
           <AssociationSet Name="FK_PERSONA_ENTREGANDO_ARTICULO" Association="Self.FK_PERSONA_ENTREGANDO_ARTICULO">
@@ -152,12 +175,13 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_CATEGORIA" Type="Int32" />
-          <Property Name="ESTADO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="Int32" />
           <Property Name="MARCA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MODELO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FOTOS" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CATEGORIA_ARTICULO" Relationship="Self.FK_ARTICULOS_CATEGORIA" FromRole="ARTICULOS" ToRole="CATEGORIA_ARTICULO" />
+          <NavigationProperty Name="ESTADOS" Relationship="Self.FK_ARTICULOS_ESTADOS" FromRole="ARTICULOS" ToRole="ESTADOS" />
           <NavigationProperty Name="PERSONA_ENTREGANDO" Relationship="Self.FK_PERSONA_ENTREGANDO_ARTICULO" FromRole="ARTICULOS" ToRole="PERSONA_ENTREGANDO" />
         </EntityType>
         <EntityType Name="CATEGORIA_ARTICULO">
@@ -166,9 +190,16 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_CATEGORIA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="SUBCATEGORIA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ARTICULOS" Relationship="Self.FK_ARTICULOS_CATEGORIA" FromRole="CATEGORIA_ARTICULO" ToRole="ARTICULOS" />
           <NavigationProperty Name="PERSONA_REPORTANDO_EXTRAVIO" Relationship="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_CATEGORIA" FromRole="CATEGORIA_ARTICULO" ToRole="PERSONA_REPORTANDO_EXTRAVIO" />
+        </EntityType>
+        <EntityType Name="ESTADOS">
+          <Key>
+            <PropertyRef Name="Id_Estado" />
+          </Key>
+          <Property Name="Id_Estado" Type="Int32" Nullable="false" />
+          <Property Name="Nombre_Estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ARTICULOS" Relationship="Self.FK_ARTICULOS_ESTADOS" FromRole="ESTADOS" ToRole="ARTICULOS" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -214,6 +245,18 @@
             </Principal>
             <Dependent Role="ARTICULOS">
               <PropertyRef Name="ID_CATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOS_ESTADOS">
+          <End Role="ESTADOS" Type="Self.ESTADOS" Multiplicity="0..1" />
+          <End Role="ARTICULOS" Type="Self.ARTICULOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOS">
+              <PropertyRef Name="Id_Estado" />
+            </Principal>
+            <Dependent Role="ARTICULOS">
+              <PropertyRef Name="ESTADO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -265,14 +308,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProyectoProgra5Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ProyectoProgra5Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ARTICULOS" EntityType="Self.ARTICULOS" />
           <EntitySet Name="CATEGORIA_ARTICULO" EntityType="Self.CATEGORIA_ARTICULO" />
+          <EntitySet Name="ESTADOS" EntityType="Self.ESTADOS" />
           <EntitySet Name="PERSONA" EntityType="Self.PERSONA" />
           <EntitySet Name="PERSONA_ENTREGANDO" EntityType="Self.PERSONA_ENTREGANDO" />
           <EntitySet Name="PERSONA_REPORTANDO_EXTRAVIO" EntityType="Self.PERSONA_REPORTANDO_EXTRAVIO" />
           <AssociationSet Name="FK_ARTICULOS_CATEGORIA" Association="Self.FK_ARTICULOS_CATEGORIA">
             <End Role="CATEGORIA_ARTICULO" EntitySet="CATEGORIA_ARTICULO" />
+            <End Role="ARTICULOS" EntitySet="ARTICULOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOS_ESTADOS" Association="Self.FK_ARTICULOS_ESTADOS">
+            <End Role="ESTADOS" EntitySet="ESTADOS" />
             <End Role="ARTICULOS" EntitySet="ARTICULOS" />
           </AssociationSet>
           <AssociationSet Name="FK_PERSONA_ENTREGANDO_ARTICULO" Association="Self.FK_PERSONA_ENTREGANDO_ARTICULO">
@@ -297,7 +345,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProyectoProgra5ModelStoreContainer" CdmEntityContainer="ProyectoProgra5Entities">
+        <EntityContainerMapping StorageEntityContainer="ProyectoProgra5ModelStoreContainer" CdmEntityContainer="ProyectoProgra5Entities1">
           <EntitySetMapping Name="ARTICULOS">
             <EntityTypeMapping TypeName="ProyectoProgra5Model.ARTICULOS">
               <MappingFragment StoreEntitySet="ARTICULOS">
@@ -316,7 +364,14 @@
               <MappingFragment StoreEntitySet="CATEGORIA_ARTICULO">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NOMBRE_CATEGORIA" ColumnName="NOMBRE_CATEGORIA" />
-                <ScalarProperty Name="SUBCATEGORIA" ColumnName="SUBCATEGORIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTADOS">
+            <EntityTypeMapping TypeName="ProyectoProgra5Model.ESTADOS">
+              <MappingFragment StoreEntitySet="ESTADOS">
+                <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+                <ScalarProperty Name="Nombre_Estado" ColumnName="Nombre_Estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
