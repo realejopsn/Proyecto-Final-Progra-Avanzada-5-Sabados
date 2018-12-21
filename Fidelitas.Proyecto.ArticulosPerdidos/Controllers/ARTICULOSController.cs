@@ -12,7 +12,7 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Controllers
 {
     public class ARTICULOSController : Controller
     {
-        private ProyectoProgra5Entities db = new ProyectoProgra5Entities();
+        private ProyectoProgra5Entities1 db = new ProyectoProgra5Entities1();
 
         // GET: ARTICULOS
         public ActionResult Index()

@@ -1,0 +1,14 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Agregar un Nuevo Rol:</h2>
+
+@using (Html.BeginForm())
+{
+    <p> Ingrese el Rol nuevo:</p>
+
+    @Html.EditorFor(m => m.Name)
+    <input type="submit" value="Crear Rol" />
+}
