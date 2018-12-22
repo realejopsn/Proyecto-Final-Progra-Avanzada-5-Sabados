@@ -1,59 +1,98 @@
 ﻿@model Fidelitas.Proyecto.ArticulosPerdidos.Model.PERSONA
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
+
+<h2>Detalle de  @Html.DisplayFor(model => model.NOMBRE_COMPLETO)</h2>
 
 <div>
     <h4>PERSONA</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBRE_COMPLETO)
-        </dt>
+    <div class="row">
+        <div class="column">
+            <dl class="dl-horizontal center">
+                <dt>
+                    @Html.DisplayName("NOMBRE COMPLETO")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE_COMPLETO)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.NOMBRE_COMPLETO)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.USUARIO)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.USUARIO)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.USUARIO)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.USUARIO)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PASSWORD)
-        </dt>
+                <dt>
+                    @Html.DisplayName("CONTRASEÑA")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PASSWORD)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.PASSWORD)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EMAIL)
-        </dt>
+                <dt>
+                    @Html.DisplayName("CORREO")
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EMAIL)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.EMAIL)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ROL)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ROL)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ROL)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ROL)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+
+        <div class="column">
+            <img src="~/img/user.jpg" class="center" style="width:150px; height:150px;" />
+        </div>
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+       
+
+        <p class="center">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Regresar", "Index")
+        </p>
+        <br /><br /><br /><br /><br /><br />

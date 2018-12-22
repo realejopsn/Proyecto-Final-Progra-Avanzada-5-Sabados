@@ -1,28 +1,28 @@
 ﻿@model IEnumerable<Fidelitas.Proyecto.ArticulosPerdidos.Model.PERSONA>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de Usuarios</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo Usuario", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_COMPLETO)
+            @Html.DisplayName("NOMBRE COMPLETO")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.USUARIO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PASSWORD)
+            @Html.DisplayName("CONTRASEÑA")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EMAIL)
+            @Html.DisplayName("CORREO")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ROL)
@@ -48,9 +48,9 @@
             @Html.DisplayFor(modelItem => item.ROL)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

@@ -200,6 +200,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PERSONASController.cs" />
+    <Compile Include="Controllers\PERSONA_ENTREGANDOController.cs" />
+    <Compile Include="Controllers\PERSONA_REPORTANDO_EXTRAVIOController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -222,7 +224,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\add-user.jpg" />
+    <Content Include="img\delete-user.png" />
+    <Content Include="img\edit-user.png" />
     <Content Include="img\principal.jpg" />
+    <Content Include="img\user.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -240,7 +245,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -287,6 +294,16 @@
     <Content Include="Views\PERSONAS\Details.cshtml" />
     <Content Include="Views\PERSONAS\Edit.cshtml" />
     <Content Include="Views\PERSONAS\Index.cshtml" />
+    <Content Include="Views\PERSONA_REPORTANDO_EXTRAVIO\Create.cshtml" />
+    <Content Include="Views\PERSONA_REPORTANDO_EXTRAVIO\Delete.cshtml" />
+    <Content Include="Views\PERSONA_REPORTANDO_EXTRAVIO\Details.cshtml" />
+    <Content Include="Views\PERSONA_REPORTANDO_EXTRAVIO\Edit.cshtml" />
+    <Content Include="Views\PERSONA_REPORTANDO_EXTRAVIO\Index.cshtml" />
+    <Content Include="Views\PERSONA_ENTREGANDO\Create.cshtml" />
+    <Content Include="Views\PERSONA_ENTREGANDO\Delete.cshtml" />
+    <Content Include="Views\PERSONA_ENTREGANDO\Details.cshtml" />
+    <Content Include="Views\PERSONA_ENTREGANDO\Edit.cshtml" />
+    <Content Include="Views\PERSONA_ENTREGANDO\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

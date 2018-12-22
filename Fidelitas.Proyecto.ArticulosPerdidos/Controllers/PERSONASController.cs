@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+
 using Fidelitas.Proyecto.ArticulosPerdidos.Model;
 
 namespace Fidelitas.Proyecto.ArticulosPerdidos.Controllers
 {
+    //[Authorize]
     public class PERSONASController : Controller
     {
         private ProyectoProgra5Entities1 db = new ProyectoProgra5Entities1();
@@ -60,7 +62,7 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Controllers
 
         // GET: PERSONAS/Edit/5
         public ActionResult Edit(int? id)
-        {
+        {            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -70,6 +72,7 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(pERSONA);
         }
 

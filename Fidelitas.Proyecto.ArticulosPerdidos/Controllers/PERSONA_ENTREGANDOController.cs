@@ -11,112 +11,116 @@ using Fidelitas.Proyecto.ArticulosPerdidos.Model;
 namespace Fidelitas.Proyecto.ArticulosPerdidos.Controllers
 {
     //[Authorize]
-    public class ARTICULOSController : Controller
+    public class PERSONA_ENTREGANDOController : Controller
     {
         private ProyectoProgra5Entities1 db = new ProyectoProgra5Entities1();
 
-        // GET: ARTICULOS
+        // GET: PERSONA_ENTREGANDO
         public ActionResult Index()
         {
-            var aRTICULOS = db.ARTICULOS.Include(a => a.CATEGORIA_ARTICULO);
-            return View(aRTICULOS.ToList());
+            var pERSONA_ENTREGANDO = db.PERSONA_ENTREGANDO.Include(p => p.ARTICULOS).Include(p => p.PERSONA);
+            return View(pERSONA_ENTREGANDO.ToList());
         }
 
-        // GET: ARTICULOS/Details/5
+        // GET: PERSONA_ENTREGANDO/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ARTICULOS aRTICULOS = db.ARTICULOS.Find(id);
-            if (aRTICULOS == null)
+            PERSONA_ENTREGANDO pERSONA_ENTREGANDO = db.PERSONA_ENTREGANDO.Find(id);
+            if (pERSONA_ENTREGANDO == null)
             {
                 return HttpNotFound();
             }
-            return View(aRTICULOS);
+            return View(pERSONA_ENTREGANDO);
         }
 
-        // GET: ARTICULOS/Create
+        // GET: PERSONA_ENTREGANDO/Create
         public ActionResult Create()
         {
-            ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA_ARTICULO, "ID", "NOMBRE_CATEGORIA");
+            ViewBag.ID_ARTICULO = new SelectList(db.ARTICULOS, "ID", "MARCA");
+            ViewBag.ID_PERSONA = new SelectList(db.PERSONA, "ID", "NOMBRE_COMPLETO");
             return View();
         }
 
-        // POST: ARTICULOS/Create
+        // POST: PERSONA_ENTREGANDO/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ID_CATEGORIA,ESTADO,MARCA,MODELO,DESCRIPCION,FOTOS")] ARTICULOS aRTICULOS)
+        public ActionResult Create([Bind(Include = "ID,ID_PERSONA,ID_ARTICULO,FECHA_ENTREGA")] PERSONA_ENTREGANDO pERSONA_ENTREGANDO)
         {
             if (ModelState.IsValid)
             {
-                db.ARTICULOS.Add(aRTICULOS);
+                db.PERSONA_ENTREGANDO.Add(pERSONA_ENTREGANDO);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA_ARTICULO, "ID", "NOMBRE_CATEGORIA", aRTICULOS.ID_CATEGORIA);
-            return View(aRTICULOS);
+            ViewBag.ID_ARTICULO = new SelectList(db.ARTICULOS, "ID", "MARCA", pERSONA_ENTREGANDO.ID_ARTICULO);
+            ViewBag.ID_PERSONA = new SelectList(db.PERSONA, "ID", "NOMBRE_COMPLETO", pERSONA_ENTREGANDO.ID_PERSONA);
+            return View(pERSONA_ENTREGANDO);
         }
 
-        // GET: ARTICULOS/Edit/5
+        // GET: PERSONA_ENTREGANDO/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ARTICULOS aRTICULOS = db.ARTICULOS.Find(id);
-            if (aRTICULOS == null)
+            PERSONA_ENTREGANDO pERSONA_ENTREGANDO = db.PERSONA_ENTREGANDO.Find(id);
+            if (pERSONA_ENTREGANDO == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA_ARTICULO, "ID", "NOMBRE_CATEGORIA", aRTICULOS.ID_CATEGORIA);
-            return View(aRTICULOS);
+            ViewBag.ID_ARTICULO = new SelectList(db.ARTICULOS, "ID", "MARCA", pERSONA_ENTREGANDO.ID_ARTICULO);
+            ViewBag.ID_PERSONA = new SelectList(db.PERSONA, "ID", "NOMBRE_COMPLETO", pERSONA_ENTREGANDO.ID_PERSONA);
+            return View(pERSONA_ENTREGANDO);
         }
 
-        // POST: ARTICULOS/Edit/5
+        // POST: PERSONA_ENTREGANDO/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ID_CATEGORIA,ESTADO,MARCA,MODELO,DESCRIPCION,FOTOS")] ARTICULOS aRTICULOS)
+        public ActionResult Edit([Bind(Include = "ID,ID_PERSONA,ID_ARTICULO,FECHA_ENTREGA")] PERSONA_ENTREGANDO pERSONA_ENTREGANDO)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(aRTICULOS).State = EntityState.Modified;
+                db.Entry(pERSONA_ENTREGANDO).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA_ARTICULO, "ID", "NOMBRE_CATEGORIA", aRTICULOS.ID_CATEGORIA);
-            return View(aRTICULOS);
+            ViewBag.ID_ARTICULO = new SelectList(db.ARTICULOS, "ID", "MARCA", pERSONA_ENTREGANDO.ID_ARTICULO);
+            ViewBag.ID_PERSONA = new SelectList(db.PERSONA, "ID", "NOMBRE_COMPLETO", pERSONA_ENTREGANDO.ID_PERSONA);
+            return View(pERSONA_ENTREGANDO);
         }
 
-        // GET: ARTICULOS/Delete/5
+        // GET: PERSONA_ENTREGANDO/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ARTICULOS aRTICULOS = db.ARTICULOS.Find(id);
-            if (aRTICULOS == null)
+            PERSONA_ENTREGANDO pERSONA_ENTREGANDO = db.PERSONA_ENTREGANDO.Find(id);
+            if (pERSONA_ENTREGANDO == null)
             {
                 return HttpNotFound();
             }
-            return View(aRTICULOS);
+            return View(pERSONA_ENTREGANDO);
         }
 
-        // POST: ARTICULOS/Delete/5
+        // POST: PERSONA_ENTREGANDO/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ARTICULOS aRTICULOS = db.ARTICULOS.Find(id);
-            db.ARTICULOS.Remove(aRTICULOS);
+            PERSONA_ENTREGANDO pERSONA_ENTREGANDO = db.PERSONA_ENTREGANDO.Find(id);
+            db.PERSONA_ENTREGANDO.Remove(pERSONA_ENTREGANDO);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Fidelitas.Proyecto.ArticulosPerdidos.Model.PERSONA_ENTREGANDO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_ENTREGA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ARTICULOS.MARCA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ARTICULOS.MODELO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE_COMPLETO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_ENTREGA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ARTICULOS.MARCA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE_COMPLETO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,43 @@
+﻿@model Fidelitas.Proyecto.ArticulosPerdidos.Model.PERSONA_ENTREGANDO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PERSONA_ENTREGANDO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_ENTREGA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_ENTREGA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ARTICULOS.MARCA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ARTICULOS.MARCA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE_COMPLETO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.NOMBRE_COMPLETO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
