@@ -41,6 +41,7 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Controllers
         public ActionResult Create()
         {
             ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA_ARTICULO, "ID", "NOMBRE_CATEGORIA");
+            ViewBag.ID_ESTADO = new SelectList(db.ESTADOS, "Id_Estado", "Nombre_Estado");
             return View();
         }
 
