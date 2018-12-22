@@ -11,16 +11,13 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
 {
      using System.Runtime.Serialization;using System;
     using System.Collections.Generic;
-    [DataContract] public partial class PERSONA_REPORTANDO_EXTRAVIO
+    [DataContract] public partial class AspNetUserClaims
     {
-        [DataMember] public int ID { get; set; }
-        [DataMember] public Nullable<int> ID_PERSONA { get; set; }
-        [DataMember] public Nullable<int> ID_CATEGORIA { get; set; }
-        [DataMember] public Nullable<System.DateTime> FECHA_REPORTE { get; set; }
-        [DataMember] public Nullable<int> ID_ARTICULO { get; set; }
+        [DataMember] public int Id { get; set; }
+        [DataMember] public string UserId { get; set; }
+        [DataMember] public string ClaimType { get; set; }
+        [DataMember] public string ClaimValue { get; set; }
     
-        public virtual ARTICULOS ARTICULOS { get; set; }
-        public virtual CATEGORIA_ARTICULO CATEGORIA_ARTICULO { get; set; }
-        public virtual PERSONA PERSONA { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

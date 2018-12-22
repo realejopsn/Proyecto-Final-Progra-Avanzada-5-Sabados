@@ -17,6 +17,7 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
         public CATEGORIA_ARTICULO()
         {
             this.ARTICULOS = new HashSet<ARTICULOS>();
+            this.PERSONA_ENTREGANDO = new HashSet<PERSONA_ENTREGANDO>();
             this.PERSONA_REPORTANDO_EXTRAVIO = new HashSet<PERSONA_REPORTANDO_EXTRAVIO>();
         }
     
@@ -25,6 +26,8 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ARTICULOS> ARTICULOS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PERSONA_ENTREGANDO> PERSONA_ENTREGANDO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PERSONA_REPORTANDO_EXTRAVIO> PERSONA_REPORTANDO_EXTRAVIO { get; set; }
     }

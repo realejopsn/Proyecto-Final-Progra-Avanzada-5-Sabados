@@ -52,7 +52,22 @@
     <Compile Include="ARTICULOS.cs">
       <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
     </Compile>
+    <Compile Include="AspNetRoles.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaims.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogins.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUsers.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
     <Compile Include="CATEGORIA_ARTICULO.cs">
+      <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>ModeloArticulosPerdidos.tt</DependentUpon>
     </Compile>
     <Compile Include="ESTADOS.cs">

@@ -13,10 +13,10 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ProyectoProgra5Entities1 : DbContext
+    public partial class ProyectoProgra5Entities3 : DbContext
     {
-        public ProyectoProgra5Entities1()
-            : base("name=ProyectoProgra5Entities1")
+        public ProyectoProgra5Entities3()
+            : base("name=ProyectoProgra5Entities3")
         {
         }
     
@@ -25,7 +25,12 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<ARTICULOS> ARTICULOS { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<CATEGORIA_ARTICULO> CATEGORIA_ARTICULO { get; set; }
         public virtual DbSet<ESTADOS> ESTADOS { get; set; }
         public virtual DbSet<PERSONA> PERSONA { get; set; }

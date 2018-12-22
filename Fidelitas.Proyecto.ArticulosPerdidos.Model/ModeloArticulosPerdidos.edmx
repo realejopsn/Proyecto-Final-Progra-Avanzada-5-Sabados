@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="ProyectoProgra5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="ARTICULOS">
           <Key>
             <PropertyRef Name="ID" />
@@ -16,6 +26,57 @@
           <Property Name="MODELO" Type="varchar" MaxLength="30" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" />
           <Property Name="FOTOS" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="CATEGORIA_ARTICULO">
           <Key>
@@ -50,6 +111,7 @@
           <Property Name="ID_PERSONA" Type="int" />
           <Property Name="ID_ARTICULO" Type="int" />
           <Property Name="FECHA_ENTREGA" Type="datetime" />
+          <Property Name="ID_CATEGORIA" Type="int" />
         </EntityType>
         <EntityType Name="PERSONA_REPORTANDO_EXTRAVIO">
           <Key>
@@ -59,6 +121,7 @@
           <Property Name="ID_PERSONA" Type="int" />
           <Property Name="ID_CATEGORIA" Type="int" />
           <Property Name="FECHA_REPORTE" Type="datetime" />
+          <Property Name="ID_ARTICULO" Type="int" />
         </EntityType>
         <Association Name="FK_ARTICULOS_CATEGORIA">
           <End Role="CATEGORIA_ARTICULO" Type="Self.CATEGORIA_ARTICULO" Multiplicity="0..1" />
@@ -84,6 +147,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PERSONA_ENTREGANDO_ARTICULO">
           <End Role="ARTICULOS" Type="Self.ARTICULOS" Multiplicity="0..1" />
           <End Role="PERSONA_ENTREGANDO" Type="Self.PERSONA_ENTREGANDO" Multiplicity="*" />
@@ -93,6 +212,18 @@
             </Principal>
             <Dependent Role="PERSONA_ENTREGANDO">
               <PropertyRef Name="ID_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERSONA_ENTREGANDO_ID_CATEGORIA">
+          <End Role="CATEGORIA_ARTICULO" Type="Self.CATEGORIA_ARTICULO" Multiplicity="0..1" />
+          <End Role="PERSONA_ENTREGANDO" Type="Self.PERSONA_ENTREGANDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA_ARTICULO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERSONA_ENTREGANDO">
+              <PropertyRef Name="ID_CATEGORIA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -120,6 +251,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PERSONA_REPORTANDO_EXTRAVIO_ID_ARTICULO">
+          <End Role="ARTICULOS" Type="Self.ARTICULOS" Multiplicity="0..1" />
+          <End Role="PERSONA_REPORTANDO_EXTRAVIO" Type="Self.PERSONA_REPORTANDO_EXTRAVIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARTICULOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERSONA_REPORTANDO_EXTRAVIO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PERSONA_REPORTANDO_EXTRAVIO_PERSONA">
           <End Role="PERSONA" Type="Self.PERSONA" Multiplicity="0..1" />
           <End Role="PERSONA_REPORTANDO_EXTRAVIO" Type="Self.PERSONA_REPORTANDO_EXTRAVIO" Multiplicity="*" />
@@ -133,7 +276,13 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ProyectoProgra5ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOS" EntityType="Self.ARTICULOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA_ARTICULO" EntityType="Self.CATEGORIA_ARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTADOS" EntityType="Self.ESTADOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERSONA" EntityType="Self.PERSONA" Schema="dbo" store:Type="Tables" />
@@ -147,8 +296,28 @@
             <End Role="ESTADOS" EntitySet="ESTADOS" />
             <End Role="ARTICULOS" EntitySet="ARTICULOS" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
           <AssociationSet Name="FK_PERSONA_ENTREGANDO_ARTICULO" Association="Self.FK_PERSONA_ENTREGANDO_ARTICULO">
             <End Role="ARTICULOS" EntitySet="ARTICULOS" />
+            <End Role="PERSONA_ENTREGANDO" EntitySet="PERSONA_ENTREGANDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERSONA_ENTREGANDO_ID_CATEGORIA" Association="Self.FK_PERSONA_ENTREGANDO_ID_CATEGORIA">
+            <End Role="CATEGORIA_ARTICULO" EntitySet="CATEGORIA_ARTICULO" />
             <End Role="PERSONA_ENTREGANDO" EntitySet="PERSONA_ENTREGANDO" />
           </AssociationSet>
           <AssociationSet Name="FK_PERSONA_ENTREGANDO_PERSONA" Association="Self.FK_PERSONA_ENTREGANDO_PERSONA">
@@ -157,6 +326,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_PERSONA_REPORTANDO_EXTRAVIO_CATEGORIA" Association="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_CATEGORIA">
             <End Role="CATEGORIA_ARTICULO" EntitySet="CATEGORIA_ARTICULO" />
+            <End Role="PERSONA_REPORTANDO_EXTRAVIO" EntitySet="PERSONA_REPORTANDO_EXTRAVIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERSONA_REPORTANDO_EXTRAVIO_ID_ARTICULO" Association="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_ID_ARTICULO">
+            <End Role="ARTICULOS" EntitySet="ARTICULOS" />
             <End Role="PERSONA_REPORTANDO_EXTRAVIO" EntitySet="PERSONA_REPORTANDO_EXTRAVIO" />
           </AssociationSet>
           <AssociationSet Name="FK_PERSONA_REPORTANDO_EXTRAVIO_PERSONA" Association="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_PERSONA">
@@ -169,6 +342,16 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoProgra5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="ARTICULOS">
           <Key>
             <PropertyRef Name="ID" />
@@ -183,6 +366,56 @@
           <NavigationProperty Name="CATEGORIA_ARTICULO" Relationship="Self.FK_ARTICULOS_CATEGORIA" FromRole="ARTICULOS" ToRole="CATEGORIA_ARTICULO" />
           <NavigationProperty Name="ESTADOS" Relationship="Self.FK_ARTICULOS_ESTADOS" FromRole="ARTICULOS" ToRole="ESTADOS" />
           <NavigationProperty Name="PERSONA_ENTREGANDO" Relationship="Self.FK_PERSONA_ENTREGANDO_ARTICULO" FromRole="ARTICULOS" ToRole="PERSONA_ENTREGANDO" />
+          <NavigationProperty Name="PERSONA_REPORTANDO_EXTRAVIO" Relationship="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_ID_ARTICULO" FromRole="ARTICULOS" ToRole="PERSONA_REPORTANDO_EXTRAVIO" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="CATEGORIA_ARTICULO">
           <Key>
@@ -191,6 +424,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_CATEGORIA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ARTICULOS" Relationship="Self.FK_ARTICULOS_CATEGORIA" FromRole="CATEGORIA_ARTICULO" ToRole="ARTICULOS" />
+          <NavigationProperty Name="PERSONA_ENTREGANDO" Relationship="Self.FK_PERSONA_ENTREGANDO_ID_CATEGORIA" FromRole="CATEGORIA_ARTICULO" ToRole="PERSONA_ENTREGANDO" />
           <NavigationProperty Name="PERSONA_REPORTANDO_EXTRAVIO" Relationship="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_CATEGORIA" FromRole="CATEGORIA_ARTICULO" ToRole="PERSONA_REPORTANDO_EXTRAVIO" />
         </EntityType>
         <EntityType Name="ESTADOS">
@@ -222,7 +456,9 @@
           <Property Name="ID_PERSONA" Type="Int32" />
           <Property Name="ID_ARTICULO" Type="Int32" />
           <Property Name="FECHA_ENTREGA" Type="DateTime" Precision="3" />
+          <Property Name="ID_CATEGORIA" Type="Int32" />
           <NavigationProperty Name="ARTICULOS" Relationship="Self.FK_PERSONA_ENTREGANDO_ARTICULO" FromRole="PERSONA_ENTREGANDO" ToRole="ARTICULOS" />
+          <NavigationProperty Name="CATEGORIA_ARTICULO" Relationship="Self.FK_PERSONA_ENTREGANDO_ID_CATEGORIA" FromRole="PERSONA_ENTREGANDO" ToRole="CATEGORIA_ARTICULO" />
           <NavigationProperty Name="PERSONA" Relationship="Self.FK_PERSONA_ENTREGANDO_PERSONA" FromRole="PERSONA_ENTREGANDO" ToRole="PERSONA" />
         </EntityType>
         <EntityType Name="PERSONA_REPORTANDO_EXTRAVIO">
@@ -233,6 +469,8 @@
           <Property Name="ID_PERSONA" Type="Int32" />
           <Property Name="ID_CATEGORIA" Type="Int32" />
           <Property Name="FECHA_REPORTE" Type="DateTime" Precision="3" />
+          <Property Name="ID_ARTICULO" Type="Int32" />
+          <NavigationProperty Name="ARTICULOS" Relationship="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_ID_ARTICULO" FromRole="PERSONA_REPORTANDO_EXTRAVIO" ToRole="ARTICULOS" />
           <NavigationProperty Name="CATEGORIA_ARTICULO" Relationship="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_CATEGORIA" FromRole="PERSONA_REPORTANDO_EXTRAVIO" ToRole="CATEGORIA_ARTICULO" />
           <NavigationProperty Name="PERSONA" Relationship="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_PERSONA" FromRole="PERSONA_REPORTANDO_EXTRAVIO" ToRole="PERSONA" />
         </EntityType>
@@ -272,6 +510,58 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PERSONA_REPORTANDO_EXTRAVIO_ID_ARTICULO">
+          <End Role="ARTICULOS" Type="Self.ARTICULOS" Multiplicity="0..1" />
+          <End Role="PERSONA_REPORTANDO_EXTRAVIO" Type="Self.PERSONA_REPORTANDO_EXTRAVIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARTICULOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERSONA_REPORTANDO_EXTRAVIO">
+              <PropertyRef Name="ID_ARTICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERSONA_ENTREGANDO_ID_CATEGORIA">
+          <End Role="CATEGORIA_ARTICULO" Type="Self.CATEGORIA_ARTICULO" Multiplicity="0..1" />
+          <End Role="PERSONA_ENTREGANDO" Type="Self.PERSONA_ENTREGANDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA_ARTICULO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERSONA_ENTREGANDO">
+              <PropertyRef Name="ID_CATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PERSONA_REPORTANDO_EXTRAVIO_CATEGORIA">
           <End Role="CATEGORIA_ARTICULO" Type="Self.CATEGORIA_ARTICULO" Multiplicity="0..1" />
           <End Role="PERSONA_REPORTANDO_EXTRAVIO" Type="Self.PERSONA_REPORTANDO_EXTRAVIO" Multiplicity="*" />
@@ -308,8 +598,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProyectoProgra5Entities1" annotation:LazyLoadingEnabled="true">
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ProyectoProgra5Entities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="ARTICULOS" EntityType="Self.ARTICULOS" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="CATEGORIA_ARTICULO" EntityType="Self.CATEGORIA_ARTICULO" />
           <EntitySet Name="ESTADOS" EntityType="Self.ESTADOS" />
           <EntitySet Name="PERSONA" EntityType="Self.PERSONA" />
@@ -327,6 +626,22 @@
             <End Role="ARTICULOS" EntitySet="ARTICULOS" />
             <End Role="PERSONA_ENTREGANDO" EntitySet="PERSONA_ENTREGANDO" />
           </AssociationSet>
+          <AssociationSet Name="FK_PERSONA_REPORTANDO_EXTRAVIO_ID_ARTICULO" Association="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_ID_ARTICULO">
+            <End Role="ARTICULOS" EntitySet="ARTICULOS" />
+            <End Role="PERSONA_REPORTANDO_EXTRAVIO" EntitySet="PERSONA_REPORTANDO_EXTRAVIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERSONA_ENTREGANDO_ID_CATEGORIA" Association="Self.FK_PERSONA_ENTREGANDO_ID_CATEGORIA">
+            <End Role="CATEGORIA_ARTICULO" EntitySet="CATEGORIA_ARTICULO" />
+            <End Role="PERSONA_ENTREGANDO" EntitySet="PERSONA_ENTREGANDO" />
+          </AssociationSet>
           <AssociationSet Name="FK_PERSONA_REPORTANDO_EXTRAVIO_CATEGORIA" Association="Self.FK_PERSONA_REPORTANDO_EXTRAVIO_CATEGORIA">
             <End Role="CATEGORIA_ARTICULO" EntitySet="CATEGORIA_ARTICULO" />
             <End Role="PERSONA_REPORTANDO_EXTRAVIO" EntitySet="PERSONA_REPORTANDO_EXTRAVIO" />
@@ -339,13 +654,27 @@
             <End Role="PERSONA" EntitySet="PERSONA" />
             <End Role="PERSONA_REPORTANDO_EXTRAVIO" EntitySet="PERSONA_REPORTANDO_EXTRAVIO" />
           </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProyectoProgra5ModelStoreContainer" CdmEntityContainer="ProyectoProgra5Entities1">
+        <EntityContainerMapping StorageEntityContainer="ProyectoProgra5ModelStoreContainer" CdmEntityContainer="ProyectoProgra5Entities3">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="ProyectoProgra5Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ARTICULOS">
             <EntityTypeMapping TypeName="ProyectoProgra5Model.ARTICULOS">
               <MappingFragment StoreEntitySet="ARTICULOS">
@@ -356,6 +685,51 @@
                 <ScalarProperty Name="MODELO" ColumnName="MODELO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="FOTOS" ColumnName="FOTOS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ProyectoProgra5Model.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ProyectoProgra5Model.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ProyectoProgra5Model.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ProyectoProgra5Model.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -394,6 +768,7 @@
                 <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
                 <ScalarProperty Name="ID_ARTICULO" ColumnName="ID_ARTICULO" />
                 <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
+                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -404,9 +779,18 @@
                 <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
                 <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
                 <ScalarProperty Name="FECHA_REPORTE" ColumnName="FECHA_REPORTE" />
+                <ScalarProperty Name="ID_ARTICULO" ColumnName="ID_ARTICULO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ProyectoProgra5Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -17,8 +17,10 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
         [DataMember] public Nullable<int> ID_PERSONA { get; set; }
         [DataMember] public Nullable<int> ID_ARTICULO { get; set; }
         [DataMember] public Nullable<System.DateTime> FECHA_ENTREGA { get; set; }
+        [DataMember] public Nullable<int> ID_CATEGORIA { get; set; }
     
         public virtual ARTICULOS ARTICULOS { get; set; }
+        public virtual CATEGORIA_ARTICULO CATEGORIA_ARTICULO { get; set; }
         public virtual PERSONA PERSONA { get; set; }
     }
 }

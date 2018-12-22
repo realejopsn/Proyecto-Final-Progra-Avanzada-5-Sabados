@@ -429,7 +429,7 @@ public class CodeStringGenerator
                 CultureInfo.InvariantCulture,
                 "{0}using System;{1}" +
                 "{2}",
-				 " using System.Runtime.Serialization;",
+				" using System.Runtime.Serialization;",
                 inHeader ? Environment.NewLine : "",
                 includeCollections ? (Environment.NewLine + "using System.Collections.Generic;") : "",
                 inHeader ? "" : Environment.NewLine)

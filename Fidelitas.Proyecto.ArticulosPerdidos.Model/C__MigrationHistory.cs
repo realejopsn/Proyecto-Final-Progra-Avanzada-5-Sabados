@@ -11,16 +11,11 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos.Model
 {
      using System.Runtime.Serialization;using System;
     using System.Collections.Generic;
-    [DataContract] public partial class PERSONA_REPORTANDO_EXTRAVIO
+    [DataContract] public partial class C__MigrationHistory
     {
-        [DataMember] public int ID { get; set; }
-        [DataMember] public Nullable<int> ID_PERSONA { get; set; }
-        [DataMember] public Nullable<int> ID_CATEGORIA { get; set; }
-        [DataMember] public Nullable<System.DateTime> FECHA_REPORTE { get; set; }
-        [DataMember] public Nullable<int> ID_ARTICULO { get; set; }
-    
-        public virtual ARTICULOS ARTICULOS { get; set; }
-        public virtual CATEGORIA_ARTICULO CATEGORIA_ARTICULO { get; set; }
-        public virtual PERSONA PERSONA { get; set; }
+        [DataMember] public string MigrationId { get; set; }
+        [DataMember] public string ContextKey { get; set; }
+        [DataMember] public byte[] Model { get; set; }
+        [DataMember] public string ProductVersion { get; set; }
     }
 }
