@@ -11,7 +11,7 @@ using Fidelitas.Proyecto.ArticulosPerdidos.Model;
 
 namespace Fidelitas.Proyecto.ArticulosPerdidos.Controllers
 {
-    //[Authorize]
+    //[Authorize(Roles = "Admin")]
     public class PERSONASController : Controller
     {
         private ProyectoProgra5Entities1 db = new ProyectoProgra5Entities1();
