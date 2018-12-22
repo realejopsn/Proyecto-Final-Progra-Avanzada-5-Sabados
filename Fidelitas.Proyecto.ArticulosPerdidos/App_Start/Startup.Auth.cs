@@ -58,11 +58,12 @@ namespace Fidelitas.Proyecto.ArticulosPerdidos
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "ClientId",
+                ClientSecret = "ClientSecret",
+                CallbackPath = new PathString("/signin-google")
+            });
         }
     }
 }

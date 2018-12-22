@@ -22,6 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Artículos", "Index", "ARTICULOS")</li>
+                    <li>@Html.ActionLink("Usuarios", "Index", "PERSONAS")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -29,7 +30,6 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Sistema de Objetos Perdidos</p>
         </footer>
