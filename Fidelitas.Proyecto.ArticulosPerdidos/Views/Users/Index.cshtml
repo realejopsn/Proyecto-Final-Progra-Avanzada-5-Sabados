@@ -7,10 +7,11 @@
 @if (ViewBag.displayMenu == "Yes")
 {
 <h1> Bienvenido  <strong>@ViewBag.Name</strong> Estas logeado como Administrador </h1>
-<h2>Ahora puedes crear nuevos roles.</h2>
-    <h3>
-        <li>@Html.ActionLink("Agregar Nuevos Roles", "Index", "Role")</li>
-    </h3>
+<h2>Ahora puedes cambiar los parametros del sistema.</h2>
+<h3>
+    <li>@Html.ActionLink("Agregar Nuevos Roles", "Index", "Role")</li>
+    <li>@Html.ActionLink("Agregar Nuevas Categorias", "Index", "CATEGORIA_ARTICULO")</li>
+</h3>
 }
 else
 {
