@@ -5,60 +5,95 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Borrar Usuario  @Html.DisplayNameFor(model => model.NOMBRE_COMPLETO)</h2>
+<style>
+
+
+    /* Create two equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
+
+<h2>Borrar Usuario  @Html.DisplayFor(model => model.NOMBRE_COMPLETO)</h2>
 
 <h3>Seguro qué quiere borrar al usuario?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("NOMBRE COMPLETO")
-        </dt>
+<hr />
+<div class="row">
+    <div class="column">
+        
+        <dl class="dl-horizontal center">
+            <dt>
+                @Html.DisplayName("NOMBRE COMPLETO")
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE_COMPLETO)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NOMBRE_COMPLETO)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.USUARIO)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.USUARIO)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.USUARIO)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.USUARIO)
+            </dd>
 
-        <dt>
-            @Html.DisplayName("CONTRASEÑA")
-        </dt>
+            <dt>
+                @Html.DisplayName("CONTRASEÑA")
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PASSWORD)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PASSWORD)
+            </dd>
 
-        <dt>
-            @Html.DisplayName("CORREO")
-        </dt>
+            <dt>
+                @Html.DisplayName("CORREO")
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EMAIL)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EMAIL)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ROL)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ROL)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ROL)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ROL)
+            </dd>
 
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Borrar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar", "Index")
-        </div>
-    }
+            <div class="form-actions no-color col-md-offset-5 col-md-10">
+                <input type="submit" value="Borrar" class="btn btn-default" /> |
+                @Html.ActionLink("Regresar", "Index")
+            </div>
+        }
+    </div>
+
+    <div class="column">
+        <img src="~/img/delete-user.png" class="center" style="width:150px; height:150px;" />
+    </div>
 </div>
+
+            <br /><br /><br />
